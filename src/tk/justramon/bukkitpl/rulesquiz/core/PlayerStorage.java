@@ -2,6 +2,8 @@ package tk.justramon.bukkitpl.rulesquiz.core;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,29 +11,34 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import com.google.common.io.Files;
+
 public class PlayerStorage
 {
-	public static boolean check(Plugin pl, Player p)
+	public static boolean check(Plugin pl, Player p) throws IOException
 	{
 		// Stuff to gen the file and folder
-		File folder = new File(pl.getDataFolder(), "data");
-		File f = new File(pl.getDataFolder(), "data" + File.separator + "playerStorage" +".yml");
+		File data = new File(pl.getDataFolder(), "data");
+		File playerStorage = new File(pl.getDataFolder(), "data" + File.separator + "playerStorage" + ".yml");
+		File warning = new File (pl.getDataFolder(), "data" + File.separator + "WARNING" + ".txt");
+		final Charset ENCODING = StandardCharsets.UTF_8;
+		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(playerStorage);
 
-		if(!folder.exists())
-			folder.mkdirs();
+		if(!data.exists())
+			data.mkdirs();
 
-		if(!f.exists())
-			try
+		if(!playerStorage.exists())
+				playerStorage.createNewFile();
+			
+		
+		if(!warning.exists())
 		{
-				f.createNewFile();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
+				String warningtext = "Warning: The files in here are soleley for storage. If you change it wrong, the plugin might break.";
+				warning.createNewFile();
+				Files.write(warningtext, warning, ENCODING);
 		}
 
 		// Stuff for the actual list inside
-		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(f);
 		List<String> done = new ArrayList<String>();
 
 		// If the list doesn't exist, create it. Else do a check if the player is done.
