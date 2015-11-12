@@ -1,0 +1,17 @@
+name: RulesQuiz
+version: 1.0
+description: Confirms that the Player has read the rules before actually being able to do anything.
+author: [JustRamon]
+
+main: tk.justramon.bukkitpl.rulesquiz.core.RulesQuiz
+
+commands:
+    rulesquiz:
+        description: Main rulesquiz command.
+        usage: /<command>
+        aliases: [rq]
+
+permissions:
+    rulesquiz.bypass:
+        description: Allows players to bypass the rulesquiz.
+        default: op

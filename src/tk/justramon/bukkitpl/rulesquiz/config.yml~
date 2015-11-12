@@ -1,0 +1,43 @@
+#   _______           _        _______  _______  _______          _________ _______ 
+#  (  ____ )|\     /|( \      (  ____ \(  ____ \(  ___  )|\     /|\__   __// ___   )
+#  | (    )|| )   ( || (      | (    \/| (    \/| (   ) || )   ( |   ) (   \/   )  |
+#  | (____)|| |   | || |      | (__    | (_____ | |   | || |   | |   | |       /   )
+#  |     __)| |   | || |      |  __)   (_____  )| |   | || |   | |   | |      /   / 
+#  | (\ (   | |   | || |      | (            ) || | /\| || |   | |   | |     /   /  
+#  | ) \ \__| (___) || (____/\| (____/\/\____) || (_\ \ || (___) |___) (___ /   (_/\
+#  |/   \__/(_______)(_______/(_______/\_______)(____\/_)(_______)\_______/(_______/                              
+
+# In this file you can configure almost everything that has to do with the plugin.
+# Things to note:
+# 1. Do not remove the quotations (''). They are required for the config to be readable, and do not display in minecraft.
+# 2. Always use spaces! Not tabs! Tip: Use http://yaml-online-parser.appspot.com/ to check! (No errors = OK)
+# 3. The best way to add a line, is to copy one of the default lines, and paste it below.
+# 4. You can use ColorCodes in the Essentials Format (using the '&') >> http://ess.khhq.net/mc/ (You do not need essentials though.)
+
+
+rules:
+  lines:
+  # Here you can configure the lines of the rules that appear on first join. You can add as many as you want.
+  - '&e[&4RulesQuiz&e]&r'
+  - '&aThese are example rules.'
+  - '&aPlease ask the server administrator to change these.'
+  - '&a(Using another method than chat, because chat is disabled.)'
+  - '&bAdmin, add as many lines as you want!'
+questions:
+  # Here you can configure the questions that get asked. Make sure the questions are able to be answered
+  # with the rules above. The questions will be asked 1 by 1. Only 1 line per question is allowed.
+  lines:
+  - '&b1. Do you like this plugin?'
+  - '&b2. Hows the weather?'
+  options:
+  # These are the options that will be displayed underneath the question, 1 by 1 (question1 + option1, q2 + o2...), to make it a bit easier. Make sure the
+  # options are valid options for the question. If you don't want options, just remove the text between the ''. It will display a blank line.
+  - '&3Choose yes or no.'
+  - '&3Choose rainy, windy, sunny or awesome.'
+  answers:
+  # The answers are also called 1 by 1(question 1 + option 1 + answer1, q2). Make sure that the answer is an option,
+  # else the players won't be able to answer the question right. (unless you made the option blank)
+  # Make sure the answers are just like the options. Do not make the answer 'yes!' if the option is 'yes',
+  # the plugin wil only neglect capitalization. COLOR CODES WILL BE NEGLECTED!!
+  - 'yes'
+  - 'awesome'
