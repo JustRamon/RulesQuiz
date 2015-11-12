@@ -36,13 +36,10 @@ public class PlayerStorage
 		// If the list doesn't exist, create it. Else do a check if the player is done.
 		if(done == null)
 			yaml.set("done", done);
+		
+		if(!yaml.get("done").toString().contains(p.getName()))
+			return false;
 		else
-		{
-			if(!yaml.get("done").toString().contains(p.getName()))
-				return false;
-			else
-				return true;
-		}
-		return false;
-	}
+			return true;
+}
 }
