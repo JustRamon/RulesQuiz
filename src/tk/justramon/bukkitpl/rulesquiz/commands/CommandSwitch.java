@@ -15,9 +15,9 @@ public class CommandSwitch
 			// Switch to find out what subcommand they're executing
 			switch (args[0])
 			{
-			case "bypass": Bypass.exe(p); break;
 			case "reset": Reset.exe(p); break;
-			// Defaults to the non existing cmd msg
+			
+			// Defaults to the non existing cmd msg\
 			default: Messages.nonExistingCmd(p); break;
 			}
 		}

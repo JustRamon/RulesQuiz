@@ -22,10 +22,16 @@ public class Messages
 		p.sendMessage(ChatColor.BOLD + "" + ChatColor.YELLOW + "[" + ChatColor.BOLD + "" + ChatColor.LIGHT_PURPLE + pl.getDescription().getName() + ChatColor.BOLD + "" + ChatColor.YELLOW +"] " + ChatColor.RESET + msg);
 	}
 	
-	// Mesage that gets sent to a player when the command they type is unsupported.
+	// Message that gets sent to a player when the command they type is unsupported
 	public static void nonExistingCmd(Player p)
 	{
 		sendPlayerMessage(p, ChatColor.RED + "Sorry, but the command you tried to execute does not exist.");
+	}
+	
+	// Message that gets sent to a player when it doesn't have the permission for the thing they're trying to do
+	public static void noPermission(Player p)
+	{
+		sendPlayerMessage(p, ChatColor.RED + "Sorry, but you don't have the permission to do this.");
 	}
 	
 	// Help Menu lines.
