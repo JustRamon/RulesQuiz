@@ -13,41 +13,44 @@ import org.bukkit.plugin.Plugin;
 
 import com.google.common.io.Files;
 
-public class PlayerStorage
+public class Data
 {
-	public static boolean check(Plugin pl, Player p) throws IOException
+	public static void check(Plugin pl)
 	{
 		// Stuff to gen the file and folder
 		File data = new File(pl.getDataFolder(), "data");
 		File playerStorage = new File(pl.getDataFolder(), "data" + File.separator + "playerStorage" + ".yml");
 		File warning = new File (pl.getDataFolder(), "data" + File.separator + "WARNING" + ".txt");
-		final Charset ENCODING = StandardCharsets.UTF_8;
 		YamlConfiguration yaml = YamlConfiguration.loadConfiguration(playerStorage);
 
+		// Data folder existing check
 		if(!data.exists())
 			data.mkdirs();
 
+		// playerStorage.yml existing check
 		if(!playerStorage.exists())
-				playerStorage.createNewFile();
-			
-		
-		if(!warning.exists())
+			try
 		{
-				String warningtext = "Warning: The files in here are soleley for storage. If you change it wrong, the plugin might break.";
-				warning.createNewFile();
-				Files.write(warningtext, warning, ENCODING);
+				playerStorage.createNewFile();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 
-		// Stuff for the actual list inside
-		List<String> done = new ArrayList<String>();
 
-		// If the list doesn't exist, create it. Else do a check if the player is done.
-		if(yaml.get("done") == null)
-			yaml.set("done", done);
-		
-		if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
-			return false;
-		else
-			return true;
-}
+		// WARNING.txt existing check
+		if(!warning.exists())
+		{
+			try
+			{
+				warning.createNewFile();
+				Files.write("Warning: The files in here are soleley for storage. If you change it wrong, the plugin might break.", warning, StandardCharsets.UTF_8);
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
 }
