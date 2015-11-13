@@ -3,12 +3,8 @@ package tk.justramon.bukkitpl.rulesquiz.core;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-
 import org.apache.commons.io.FileUtils;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-
 
 public class Data
 {
@@ -34,7 +30,6 @@ public class Data
 			{
 				e.printStackTrace();
 			}
-			YamlConfiguration.loadConfiguration(playerStorage).set("done", Arrays.asList("This is only here to prevent this list being null."));
 		}
 
 

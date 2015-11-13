@@ -1,6 +1,7 @@
 package tk.justramon.bukkitpl.rulesquiz.core;
 
 import java.io.File;
+import java.util.Arrays;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -24,8 +25,15 @@ public class Listeners implements Listener
 		Player p = event.getPlayer();
 
 		// If the player hasn't done the quiz yet, launch the rulesquiz-quiz
-		if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
-			Init.exe(p);
+		if(yaml.get("done") == null)
+		{
+			yaml.set("done", Arrays.asList("This is only here to prevent this list being null."));
+		}
+		else
+		{
+			if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
+				Init.exe(p);
+		}
 	}
 
 	@EventHandler
@@ -42,11 +50,11 @@ public class Listeners implements Listener
 	public void onChat(AsyncPlayerChatEvent event)
 	{
 		Player p = event.getPlayer();
-		
+
 		// [DEBUG CODE] If the player hasn't done the quiz yet, do not let him move.
 		//TODO: Change this to respect quiz inputs.
 		if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
 			Messages.sendPlayerMessage(p, ChatColor.RED + "You cannot chat during the rulesquiz.");
-			event.setCancelled(true);
+		event.setCancelled(true);
 	}
 }
