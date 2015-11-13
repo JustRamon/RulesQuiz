@@ -6,7 +6,9 @@ import java.util.Arrays;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -25,10 +27,9 @@ public class Listeners implements Listener
 		Player p = event.getPlayer();
 
 		// If the player hasn't done the quiz yet, launch the rulesquiz-quiz
+		// Check to create "done" if needed.
 		if(yaml.get("done") == null)
-		{
-			yaml.set("done", Arrays.asList("This is only here to prevent this list being null."));
-		}
+			yaml.set("done", Arrays.asList(""));
 		else
 		{
 			if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
@@ -36,12 +37,26 @@ public class Listeners implements Listener
 		}
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onMove(PlayerMoveEvent event)
 	{
 		Player p = event.getPlayer();
 
 		// If the player hasn't done the quiz yet, do not let him move.
+		// Check to create "done" if needed.
+		if(yaml.get("done") == null)
+			yaml.set("done", Arrays.asList(""));
+		else
+		{
+			if(!yaml.get("done").toString().contains(p.getUniqueId().toString()) && !event.getFrom().toVector().equals(event.getTo().toVector()))
+				p.teleport(p);
+		}
+	}
+	
+	@EventHandler
+	public void onBlockBreak(BlockBreakEvent event)
+	{
+		Player p = event.getPlayer();
 		if(!yaml.get("done").toString().contains(p.getUniqueId().toString()))
 			event.setCancelled(true);
 	}
