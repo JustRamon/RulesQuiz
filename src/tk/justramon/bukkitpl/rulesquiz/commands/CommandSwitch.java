@@ -4,7 +4,6 @@ import org.bukkit.entity.Player;
 
 import tk.justramon.bukkitpl.rulesquiz.core.Messages;
 
-
 public class CommandSwitch
 {
 	public static void exe(Player p, String[] args)
@@ -15,10 +14,10 @@ public class CommandSwitch
 			// Switch to find out what subcommand they're executing
 			switch (args[0])
 			{
-			case "reset": Reset.exe(p); break;
-			
-			// Defaults to the non existing cmd msg\
-			default: Messages.nonExistingCmd(p); break;
+				case "reset": Reset.exe(p); break;
+
+				// Defaults to the non existing cmd msg\
+				default: Messages.nonExistingCmd(p); break;
 			}
 		}
 		// Cmd without args will open the help menu.

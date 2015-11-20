@@ -1,18 +1,18 @@
 package tk.justramon.bukkitpl.rulesquiz.core;
 
-import java.io.IOException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import tk.justramon.bukkitpl.rulesquiz.commands.CommandSwitch;
 
 public class RulesQuiz extends JavaPlugin
 {
 	public static RulesQuiz plugin;
 
+	@Override
 	public void onEnable()
 	{
 		// Getting plugin instance
@@ -25,6 +25,7 @@ public class RulesQuiz extends JavaPlugin
 		this.saveDefaultConfig();
 	}
 
+	@Override
 	public void onDisable()
 	{
 		// Removing plugin instance
@@ -53,6 +54,7 @@ public class RulesQuiz extends JavaPlugin
 			CommandSwitch.exe(p, args);
 			return true;
 		}
+		
 		return false;
 	}
 }
